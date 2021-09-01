@@ -4,41 +4,43 @@ using UnityEngine;
 
 public class Invincibility : PowerUpBase
 {
-    Color[] childColors;
-    Material material;
-
-    private void WhenAwake(Player player, int i)
-    {
-        childColors[i] = player.transform.GetChild(i).GetComponent<Color>();
-    }
+    [SerializeField] Material newMat;
+    [SerializeField] Material old1;
+    [SerializeField] Material old2;
+    Renderer[] children;
+    public static bool isActive;
 
     public override void PowerUp(Player player)
-    { 
-        /*
-        if (player.GetComponent<Material>())
+    {
+        children = player.GetComponentsInChildren<Renderer>();
+        foreach (Renderer rend in children)
         {
-            WhenAwake(player);
-            player.GetComponent<Renderer>().color = Color.white;
-        }
-        */
-
-        for(int i = 0; i < player.transform.childCount; i++)
-        {
-            if(player.transform.GetChild(i).childCount != 0)
+            var mats = new Material[rend.materials.Length];
+            for (int j = 0; j < rend.materials.Length; j++)
             {
-                if(player.transform.GetChild(i).GetChild(i).GetComponent<Material>())
-                {
-                    WhenAwake(player, i);
-                    material = player.transform.GetChild(i).GetChild(i).GetComponent<Material>();
-                    material.color = Color.white;
-
-                }
+                mats[j] = newMat;
             }
-
+            rend.materials = mats;
         }
+        isActive = true;
     }
 
     public override void PowerDown(Player player)
     {
+        children = player.GetComponentsInChildren<Renderer>();
+        int i = 0;
+        foreach (Renderer rend in children)
+        {
+            if(i == 0 || i == 3)
+            {
+                rend.material = old1;
+            }
+            if(i == 1 || i ==2)
+            {
+                rend.material = old2;
+            }
+            i++;
+        }
+        isActive = false;
     }
 }

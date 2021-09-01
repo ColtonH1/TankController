@@ -8,6 +8,9 @@ public abstract class PowerUpBase : MonoBehaviour
     public abstract void PowerDown(Player player);
     [SerializeField] float powerupDuration;
 
+    [SerializeField] ParticleSystem _impactParticles;
+    [SerializeField] AudioClip _impactSound;
+
     private void OnTriggerEnter(Collider other)
     {
         Player player = other.gameObject.GetComponent<Player>();
@@ -16,6 +19,7 @@ public abstract class PowerUpBase : MonoBehaviour
             PowerUp(player);
             gameObject.GetComponent<MeshRenderer>().enabled = false;
             gameObject.GetComponent<BoxCollider>().enabled = false;
+            ImpactFeedback();
             StartCoroutine(EndPowerup(player, powerupDuration));
         }
 
@@ -28,6 +32,20 @@ public abstract class PowerUpBase : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    private void ImpactFeedback()
+    {
+        //particles
+        if (_impactParticles != null)
+        {
+            _impactParticles = Instantiate(_impactParticles, transform.position, Quaternion.identity);
+        }
+
+        //audio. TODO - consider Object Pooling for performance 
+        if (_impactSound != null)
+        {
+            AudioHelper.PlayClip2D(_impactSound, 1f);
+        }
+    }
 
 
 }

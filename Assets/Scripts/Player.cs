@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] int _maxHealth = 3;
     int _currentHealth;
+    [SerializeField] public bool isInvuln;
 
     TankController _tankController;
     private void Awake()
@@ -17,6 +18,11 @@ public class Player : MonoBehaviour
     void Start()
     {
         _currentHealth = _maxHealth;
+    }
+
+    private void Update()
+    {
+        isInvuln = Invincibility.isActive;
     }
 
     public void IncreaseHealth(int amount)

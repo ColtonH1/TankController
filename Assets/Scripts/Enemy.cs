@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Player player = collision.gameObject.GetComponent<Player>();
-        if(player != null)
+        if(player != null && !player.isInvuln)
         {
             PlayerImpact(player);
             ImpactFeedback();
