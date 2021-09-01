@@ -8,11 +8,11 @@ public class SpeedIncrease : CollectibleBase
 
     protected override void Collect(Player player)
     {
-        //pull motor controlelr from the player
+        //pull motor controller from the player
         TankController controller = player.GetComponent<TankController>();
         if(controller != null)
         {
-            controller.MoveSpeed += _speedAmount;
+            controller.MaxSpeed += _speedAmount;
         }
     }
 
