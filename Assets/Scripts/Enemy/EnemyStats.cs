@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyStats : CharacterStats
 {
+    [Header("Enemy Stats")]
     Enemy _enemy;
     private void Awake()
     {

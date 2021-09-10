@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
+    [Header("Character Stats")]
     [SerializeField] public int _maxHealth = 3;
     [SerializeField] public int _currentHealth;
     [SerializeField] public bool isInvuln;
+
+    [SerializeField] ParticleSystem _impactParticles;
+    [SerializeField] AudioClip _impactSound;
 
     private void Start()
     {
@@ -30,15 +34,37 @@ public class CharacterStats : MonoBehaviour
         Debug.Log(gameObject.name + "'s health: " + _currentHealth);
         if (_currentHealth <= 0)
         {
+            ImpactFeedback();
             Kill();
+        }
+    }
+
+    private void ImpactFeedback()
+    {
+        //particles
+        if (_impactParticles != null)
+        {
+            _impactParticles = Instantiate(_impactParticles, transform.position, Quaternion.identity);
+        }
+
+        //audio. TODO - consider Object Pooling for performance 
+        if (_impactSound != null)
+        {
+            AudioHelper.PlayClip2D(_impactSound, 1f);
         }
     }
 
     public virtual void Kill()
     {
         Debug.Log(gameObject.name + " died");
-        gameObject.SetActive(false);
+        StartCoroutine(KillObject());
         //play particles
         //play sounds
     }
+    IEnumerator KillObject()
+    {
+        yield return new WaitForSeconds(1);
+        gameObject.SetActive(false);
+    }
+
 }

@@ -53,8 +53,8 @@ public class EnemyController : MonoBehaviour
     {
         agent.SetDestination(target.position);
 
-        if (distance <= agent.stoppingDistance)
-        {
+        //if (distance <= agent.stoppingDistance)
+        //{
             Player2 targetStats = target.GetComponent<Player2>();
             if (targetStats != null)
             {
@@ -63,8 +63,7 @@ public class EnemyController : MonoBehaviour
             }
 
             FaceTarget(target);
-        }
-        moveSpot.position = new Vector3(Random.Range(minX, maxX), 0, Random.Range(minZ, maxZ));
+        //}
     }
 
     private void Patrol()

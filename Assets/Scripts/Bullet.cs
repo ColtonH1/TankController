@@ -15,17 +15,12 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Collided with " + collision.gameObject.name);
         CharacterCombat combat = gameObject.GetComponent<CharacterCombat>();
-        CharacterStats stats = collision.rigidbody.GetComponent<CharacterStats>();
-        //CharacterStats stats = collision.GetComponent<CharacterStats>();
+        CharacterStats stats = collision.gameObject.GetComponent<CharacterStats>();
         gameObject.GetComponent<MeshRenderer>().enabled = false;
-        gameObject.GetComponent<BoxCollider>().enabled = false;
+        gameObject.GetComponent<Collider>().enabled = false;
 
-        if (stats != null)
-        {
-            Debug.Log("Attacking: " + stats);
-            combat.Attack(stats);
-        }
         if (impactParticles != null)
         {
             GameObject impact = Instantiate(impactParticles, transform.position, impactParticles.transform.rotation);
@@ -34,6 +29,12 @@ public class Bullet : MonoBehaviour
         {
             AudioHelper.PlayClip2D(impactSound, volume);
         }
+        if (stats != null)
+        {
+            Debug.Log("Attacking: " + stats);
+            combat.Attack(stats);
+        }
+
         Destroy(gameObject, 5);
     }
 
@@ -41,9 +42,10 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         CharacterCombat combat = gameObject.GetComponent<CharacterCombat>();
-        CharacterStats stats = other.GetComponent<CharacterStats>();
+        CharacterStats stats = collision.rigidbody.GetComponent<CharacterStats>();
+        //CharacterStats stats = collision.GetComponent<CharacterStats>();
         gameObject.GetComponent<MeshRenderer>().enabled = false;
-        gameObject.GetComponent<BoxCollider>().enabled = false;
+        gameObject.GetComponent<Collider>().enabled = false;
 
         if (stats != null)
         {

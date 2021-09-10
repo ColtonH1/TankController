@@ -19,7 +19,7 @@ public class EnemyInteract : Interactable
         CharacterCombat playerCombat = playerManager.player.GetComponent<CharacterCombat>();
         if(playerCombat != null)
         {
-            playerCombat.Attack(myStats);
+            //playerCombat.Attack(myStats);
         }
     }
 }

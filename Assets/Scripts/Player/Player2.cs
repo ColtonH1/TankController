@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player2 : CharacterStats
 {
+    [Header("Player2")]
     TankController _tankController;
     private void Awake()
     {
@@ -18,6 +19,13 @@ public class Player2 : CharacterStats
     public override void Kill()
     {
         base.Kill();
+        //PlayerManager.instance.KillPlayer();
+        StartCoroutine(ResetLevel());
+    }
+
+    IEnumerator ResetLevel()
+    {
+        yield return new WaitForSeconds(1);
         PlayerManager.instance.KillPlayer();
     }
 }

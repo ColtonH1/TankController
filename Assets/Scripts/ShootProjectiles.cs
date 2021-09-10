@@ -13,9 +13,11 @@ public class ShootProjectiles : MonoBehaviour
     public float launchVelocity = 700f;
     [SerializeField] float volume = 1f;
 
-    protected void FireObject()
+    protected GameObject ball;
+
+    public virtual void FireObject()
     {
-            GameObject ball = Instantiate(projectile, launchOrigin.transform.position, transform.rotation);
+            ball = Instantiate(projectile, launchOrigin.transform.position, transform.rotation);
             if (shootParticles != null)
             {
                 Instantiate(shootParticles, launchOrigin.transform.position, shootParticles.transform.rotation);
@@ -24,7 +26,7 @@ public class ShootProjectiles : MonoBehaviour
             {
                 AudioHelper.PlayClip2D(shootSound, volume);
             }
-            ball.GetComponent<Rigidbody>().AddRelativeForce(0, 0, launchVelocity);
+            //ball.GetComponent<Rigidbody>().AddRelativeForce(0, 0, launchVelocity);
     }
 
     public virtual void FireReaction()

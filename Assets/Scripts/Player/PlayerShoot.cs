@@ -25,4 +25,11 @@ public class PlayerShoot : ShootProjectiles
     {
         //damage enemy
     }
+
+    public override void FireObject()
+    {
+        base.FireObject();
+        if(ball != null)
+            ball.GetComponent<Rigidbody>().AddRelativeForce(0, 0, launchVelocity);
+    }
 }

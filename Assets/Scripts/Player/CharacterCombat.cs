@@ -26,16 +26,19 @@ public class CharacterCombat : MonoBehaviour
     {
         if(attackCooldown <= 0f)
         {
-            StartCoroutine(DoDamage(targetStats, attackDelay));
+            Debug.Log("CharCombatAttack");
+            //StartCoroutine(DoDamage(targetStats, attackDelay));
+            targetStats.DecreaseHealth(1);
             attackCooldown = 1f / attackSpeed;
         }
     }
 
+    /*
     IEnumerator DoDamage(CharacterStats stats, float delay)
     {
         yield return new WaitForSeconds(delay);
 
-
+        Debug.Log("CharCombatAttack after one second");
         stats.DecreaseHealth(1);
-    }
+    }*/
 }
