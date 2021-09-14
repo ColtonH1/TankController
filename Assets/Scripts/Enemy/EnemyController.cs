@@ -14,10 +14,17 @@ public class EnemyController : MonoBehaviour
 
     public float speed;
     private float waitTime;
+    public float waitThisLong;
     public float startWaitTime;
 
     public Transform moveSpot;
     public float minX, minZ, maxX, maxZ;
+
+    [SerializeField] int jumpHeight;
+    private bool isGrounded;
+    private Rigidbody rb;
+    public float distToGround = 1f;
+
 
     private void Start()
     {
@@ -26,11 +33,26 @@ public class EnemyController : MonoBehaviour
         combat = GetComponent<CharacterCombat>();
         enemyShoot = GetComponent<EnemyShoot>();
         moveSpot.position = new Vector3(Random.Range(minX, maxX), 0, Random.Range(minZ, maxZ));
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
-        Move();
+        
+        int random = Random.Range(0, 1000);
+        
+        if (isGrounded && (random == 1))
+        {
+            JumpAttacking();
+            Debug.Log(random);
+        }
+        else
+            Move();
+    }
+
+    private void FixedUpdate()
+    {
+        GroundCheck();
     }
 
     private void Move()
@@ -95,5 +117,40 @@ public class EnemyController : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, lookRadius);
+    }
+
+    //jump attack
+    private void GroundCheck()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, distToGround + 0.1f))
+        {
+            Debug.Log("Grounded");
+            isGrounded = true;
+        }
+        else
+        {
+            Debug.Log("Not Grounded");
+            isGrounded = false;
+        }
+    }
+
+    private void JumpAttacking()
+    {
+        Vector3 distance = target.transform.position - transform.position;
+        Debug.Log(isGrounded);
+        if (isGrounded)
+        {
+            rb.constraints = RigidbodyConstraints.None;
+            FaceTarget(target.transform);
+            rb.AddForce(new Vector3(distance.x, jumpHeight, distance.z), ForceMode.Impulse);
+            StartCoroutine(FreezeContraints(waitThisLong));
+        }
+    }
+
+    IEnumerator FreezeContraints(float waitThisLong)
+    {
+        yield return new WaitForSeconds(waitThisLong);
+
+        rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 }

@@ -18,9 +18,8 @@ public class Player2 : CharacterStats
 
     public override void Kill()
     {
-        base.Kill();
-        //PlayerManager.instance.KillPlayer();
         StartCoroutine(ResetLevel());
+        base.Kill();
     }
 
     IEnumerator ResetLevel()

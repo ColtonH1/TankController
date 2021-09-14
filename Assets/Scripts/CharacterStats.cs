@@ -13,8 +13,7 @@ public class CharacterStats : MonoBehaviour
     [SerializeField] AudioClip _impactSound;
 
     private void Start()
-    {
-        Debug.Log(gameObject.name + " Max health is " + _maxHealth);
+    { 
         _currentHealth = _maxHealth;
     }
     private void Update()
@@ -34,6 +33,7 @@ public class CharacterStats : MonoBehaviour
         Debug.Log(gameObject.name + "'s health: " + _currentHealth);
         if (_currentHealth <= 0)
         {
+            _currentHealth = 0;
             ImpactFeedback();
             Kill();
         }
@@ -57,13 +57,27 @@ public class CharacterStats : MonoBehaviour
     public virtual void Kill()
     {
         Debug.Log(gameObject.name + " died");
+    
+        SkinnedMeshRenderer skinnedMeshRenderer = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
+        if (skinnedMeshRenderer != null)
+            skinnedMeshRenderer.enabled = false;
+        MeshRenderer meshRenderer = gameObject.GetComponentInChildren<MeshRenderer>();
+        if (meshRenderer != null)
+            meshRenderer.enabled = false;
+        Collider collider = gameObject.GetComponent<Collider>();
+        if (collider != null)
+            collider.enabled = false;
+        ShootProjectiles shootProjectiles = gameObject.GetComponent<ShootProjectiles>();
+        if (shootProjectiles != null)
+            shootProjectiles.enabled = false;
+        Interactable interactable = gameObject.GetComponent<Interactable>();
+        if (interactable != null)
+            interactable.enabled = false;
         StartCoroutine(KillObject());
-        //play particles
-        //play sounds
     }
     IEnumerator KillObject()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         gameObject.SetActive(false);
     }
 

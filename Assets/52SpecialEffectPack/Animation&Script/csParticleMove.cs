@@ -29,7 +29,13 @@ public class csParticleMove : MonoBehaviour
         {
             GameObject.Find("FireBall(Clone)").SetActive(false);
         }
-        
+
+        GameObject swampBall = GameObject.Find("SwampBall(Clone)");
+        if (swampBall != null)
+        {
+            GameObject.Find("SwampBall(Clone)").SetActive(false);
+        }
+
         Destroy(gameObject);
     }
 }

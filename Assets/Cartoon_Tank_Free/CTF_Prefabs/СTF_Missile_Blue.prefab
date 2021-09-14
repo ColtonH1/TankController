@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 2302577631212875841}
   - component: {fileID: 7836717825834629032}
   - component: {fileID: 7960596808831668994}
-  - component: {fileID: -6495056040731512240}
   - component: {fileID: 7573991610157005031}
   - component: {fileID: -2458367925219885058}
   - component: {fileID: 6668672662463638290}
   - component: {fileID: -4471518637790876857}
+  - component: {fileID: 655411870231699070}
   m_Layer: 0
   m_Name: "\u0421TF_Missile_Blue"
   m_TagString: Untagged
@@ -101,21 +101,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &-6495056040731512240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7090710131271465290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4df01d8507696e49b051d2eb2990550, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  impactParticles: {fileID: 100000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
-  impactSound: {fileID: 8300000, guid: 5ff823f546b52574a931e1d9b44290a6, type: 3}
-  volume: 0.1
 --- !u!65 &7573991610157005031
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -144,6 +129,8 @@ MonoBehaviour:
   _maxHealth: 3
   _currentHealth: 0
   isInvuln: 0
+  _impactParticles: {fileID: 0}
+  _impactSound: {fileID: 0}
 --- !u!114 &6668672662463638290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,3 +159,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6909719072842952981, guid: 3d210b2be9d4b9144b53828dfc2e73e3, type: 3}
+--- !u!114 &655411870231699070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7090710131271465290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a429d46425fa9d7409754d7eac704e45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactParticles: {fileID: 1892078723244562, guid: 46876a2780737ec45a19d62f88e5ce56,
+    type: 3}
+  impactSound: {fileID: 8300000, guid: 5ff823f546b52574a931e1d9b44290a6, type: 3}
+  volume: 0.1
