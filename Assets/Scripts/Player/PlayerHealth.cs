@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player2 : CharacterStats
+public class PlayerHealth : HealthBase
 {
-    [Header("Player2")]
+    [Header("PlayerHealth")]
     TankController _tankController;
     private void Awake()
     {

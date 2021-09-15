@@ -10,7 +10,7 @@ public class Invincibility : PowerUpBase
     Renderer[] children;
     public static bool isActive;
 
-    public override void PowerUp(Player2 player)
+    public override void PowerUp(PlayerHealth player)
     {
         children = player.GetComponentsInChildren<Renderer>();
         foreach (Renderer rend in children)
@@ -25,7 +25,7 @@ public class Invincibility : PowerUpBase
         isActive = true;
     }
 
-    public override void PowerDown(Player2 player)
+    public override void PowerDown(PlayerHealth player)
     {
         children = player.GetComponentsInChildren<Renderer>();
         int i = 0;

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterStats : MonoBehaviour
+public class HealthBase : MonoBehaviour, IDamageable
 {
-    [Header("Character Stats")]
+    [Header("Health Base")]
     [SerializeField] public int _maxHealth = 3;
     [SerializeField] public int _currentHealth;
     [SerializeField] public bool isInvuln;
@@ -27,14 +27,14 @@ public class CharacterStats : MonoBehaviour
         Debug.Log(gameObject.name + "'s health: " + _currentHealth);
     }
 
-    public void DecreaseHealth(int amount)
+    public void TakeDamage(int amount)
     {
         _currentHealth -= amount;
         Debug.Log(gameObject.name + "'s health: " + _currentHealth);
         if (_currentHealth <= 0)
         {
             _currentHealth = 0;
-            ImpactFeedback();
+            //ImpactFeedback();
             Kill();
         }
     }
@@ -50,6 +50,7 @@ public class CharacterStats : MonoBehaviour
         //audio. TODO - consider Object Pooling for performance 
         if (_impactSound != null)
         {
+            Debug.Log("Playing " + _impactSound);
             AudioHelper.PlayClip2D(_impactSound, 1f);
         }
     }
@@ -57,10 +58,9 @@ public class CharacterStats : MonoBehaviour
     public virtual void Kill()
     {
         Debug.Log(gameObject.name + " died");
-    
-        SkinnedMeshRenderer skinnedMeshRenderer = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
-        if (skinnedMeshRenderer != null)
-            skinnedMeshRenderer.enabled = false;
+
+        ImpactFeedback();
+
         MeshRenderer meshRenderer = gameObject.GetComponentInChildren<MeshRenderer>();
         if (meshRenderer != null)
             meshRenderer.enabled = false;
@@ -79,6 +79,11 @@ public class CharacterStats : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         gameObject.SetActive(false);
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 
 }

@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 3096762858278074410}
   - component: {fileID: 6470566667446763459}
   - component: {fileID: -6187144285950202191}
-  - component: {fileID: 3903424651212109706}
   - component: {fileID: -4294338362709184752}
   - component: {fileID: -6446158193791583868}
   - component: {fileID: -70670981009038111}
+  - component: {fileID: 4082436067987925800}
   m_Layer: 0
   m_Name: "\u0421TF_Missile_Green"
   m_TagString: Untagged
@@ -100,23 +100,6 @@ MonoBehaviour:
   impactSound: {fileID: 8300000, guid: 78419f98379502c4dbfb2774bc94e7c1, type: 3}
   volume: 1
   knockbackStrength: 10
---- !u!114 &3903424651212109706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6299071353543684385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fded0706d1f93474384b033d0cd74ee8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHealth: 3
-  _currentHealth: 0
-  isInvuln: 0
-  _impactParticles: {fileID: 0}
-  _impactSound: {fileID: 0}
 --- !u!114 &-4294338362709184752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,3 +144,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4082436067987925800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6299071353543684385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9661d0f4592ea794687b78cb3f10a84a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 3
+  _currentHealth: 0
+  isInvuln: 0
+  _impactParticles: {fileID: 0}
+  _impactSound: {fileID: 0}

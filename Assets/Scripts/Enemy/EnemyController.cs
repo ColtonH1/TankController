@@ -77,7 +77,7 @@ public class EnemyController : MonoBehaviour
 
         //if (distance <= agent.stoppingDistance)
         //{
-            Player2 targetStats = target.GetComponent<Player2>();
+            PlayerHealth targetStats = target.GetComponent<PlayerHealth>();
             if (targetStats != null)
             {
                 enemyShoot.Shoot();

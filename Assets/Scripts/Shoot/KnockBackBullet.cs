@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KnockBackBullet : Bullet
+public class KnockBackBullet : BulletBase
 {
     [SerializeField] private float knockbackStrength;
 
-    protected override void Impact(CharacterStats stats, CharacterCombat combat)
+    protected override void Impact(IDamageable damageable, CharacterCombat combat)
     {
-        if(stats != null)
+        GameObject gameObject = damageable.GetGameObject();
+        Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+        if(rb != null)
         {
-            Vector3 direction = stats.transform.position - transform.position;
-            stats.GetComponent<Rigidbody>().AddForce(direction.normalized * knockbackStrength, ForceMode.Impulse);
+            Vector3 direction = gameObject.transform.position - transform.position;
+            rb.AddForce(direction.normalized * knockbackStrength, ForceMode.Impulse);
         }
+
     }
 
 }

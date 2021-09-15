@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Player2 player = collision.gameObject.GetComponent<Player2>();
+        PlayerHealth player = collision.gameObject.GetComponent<PlayerHealth>();
         if(player != null && !player.isInvuln)
         {
             PlayerImpact(player);
@@ -26,9 +26,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    protected virtual void PlayerImpact(Player2 player)
+    protected virtual void PlayerImpact(PlayerHealth player)
     {
-        player.DecreaseHealth(_damageAmount);
+        player.TakeDamage(_damageAmount);
     }
 
     private void ImpactFeedback()

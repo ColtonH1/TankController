@@ -45,7 +45,6 @@ public class EnemyShoot : ShootProjectiles
         //every so often, FireObject()
         if (waitTime <= 0)
         {
-            Debug.Log(i);
             if(i == 1)
                 FireObject(projectile1, launchOrigin);
             else

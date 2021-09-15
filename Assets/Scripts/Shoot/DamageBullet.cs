@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageBullet : Bullet
+public class DamageBullet : BulletBase
 {
-    protected override void Impact(CharacterStats stats, CharacterCombat combat)
+    [Header("Damage Bullet")]
+    [SerializeField] int amount;
+    protected override void Impact(IDamageable damageable, CharacterCombat combat)
     {
-        if (stats != null)
-        {
-            Debug.Log("Has damage bullet");
-            combat.Attack(stats);
-        }
+        Debug.Log("Has damage bullet");
+        combat.Attack(damageable, amount);
     }
 }

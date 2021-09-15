@@ -4,8 +4,8 @@ using UnityEngine;
 
 public abstract class PowerUpBase : MonoBehaviour
 {
-    public abstract void PowerUp(Player2 player);
-    public abstract void PowerDown(Player2 player);
+    public abstract void PowerUp(PlayerHealth player);
+    public abstract void PowerDown(PlayerHealth player);
     [SerializeField] float powerupDuration;
 
     [SerializeField] ParticleSystem _impactParticles;
@@ -13,7 +13,7 @@ public abstract class PowerUpBase : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Player2 player = other.gameObject.GetComponent<Player2>();
+        PlayerHealth player = other.gameObject.GetComponent<PlayerHealth>();
         if(player != null)
         {
             PowerUp(player);
@@ -25,7 +25,7 @@ public abstract class PowerUpBase : MonoBehaviour
 
     }
 
-    private IEnumerator EndPowerup(Player2 player, float waitTime)
+    private IEnumerator EndPowerup(PlayerHealth player, float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
         PowerDown(player);

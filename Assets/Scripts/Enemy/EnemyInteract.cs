@@ -2,26 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterStats))]
+[RequireComponent(typeof(HealthBase))]
 public class EnemyInteract : Interactable
 {
     PlayerManager playerManager;
-    CharacterStats myStats;
+    HealthBase myStats;
     CharacterCombat combat;
+    [SerializeField] int amount;
 
     private void Start()
     {
         playerManager = PlayerManager.instance;
-        myStats = GetComponent<CharacterStats>();
+        myStats = GetComponent<HealthBase>();
         combat = GetComponent<CharacterCombat>();
     }
     public override void Interact()
     {
         base.Interact();
-        CharacterStats targetStats = playerManager.player.GetComponent<CharacterStats>();
+        HealthBase targetStats = playerManager.player.GetComponent<HealthBase>();
         if (targetStats != null)
         {
-            combat.Attack(targetStats);
+            combat.Attack(targetStats, amount);
         }
 
     }

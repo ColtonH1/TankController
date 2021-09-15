@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterStats))]
+[RequireComponent(typeof(HealthBase))]
 public class CharacterCombat : MonoBehaviour
 {
     public float attackSpeed = 1f;
@@ -10,17 +10,18 @@ public class CharacterCombat : MonoBehaviour
 
     public float attackDelay = .6f;
 
+
     private void Update()
     {
         attackCooldown -= Time.deltaTime;
     }
 
-    public void Attack(CharacterStats targetStats)
+    public void Attack(IDamageable damageable, int amount)
     {
         if(attackCooldown <= 0f)
         {
-            Debug.Log(transform.name + " is attacking " + targetStats.name);
-            targetStats.DecreaseHealth(1);
+            Debug.Log(transform.name + " is attacking " + damageable.GetGameObject().name);
+            damageable.TakeDamage(amount);
             attackCooldown = 3f / attackSpeed;
         }
     }

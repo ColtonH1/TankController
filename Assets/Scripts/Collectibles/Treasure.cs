@@ -5,7 +5,7 @@ using UnityEngine;
 public class Treasure : CollectibleBase
 {
 
-    protected override void Collect(Player2 player)
+    protected override void Collect(PlayerHealth player)
     {
         Inventory inventory = player.GetComponent<Inventory>();
         if (inventory != null)

@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExplosiveBullet : Bullet
+public class ExplosiveBullet : BulletBase
 {
-    protected override void Impact(CharacterStats stats, CharacterCombat combat)
+    protected override void Impact(IDamageable damageable, CharacterCombat combat)
     {
-        if(stats != null)
-        {
-            Debug.Log("Has explosive bullet");
-            stats.Kill();
-        }
+
+        Debug.Log("Has explosive bullet");
+
+        damageable.GetGameObject().GetComponent<HealthBase>().Kill();
 
     }
 }

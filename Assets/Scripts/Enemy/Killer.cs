@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Killer : Enemy
 {
-    protected override void PlayerImpact(Player2 player)
+    protected override void PlayerImpact(PlayerHealth player)
     {
         //base.PlayerImpact(player);
         player.Kill();
