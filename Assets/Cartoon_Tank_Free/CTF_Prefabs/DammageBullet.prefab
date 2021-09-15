@@ -16,9 +16,9 @@ GameObject:
   - component: {fileID: 6668672662463638290}
   - component: {fileID: -4471518637790876857}
   - component: {fileID: 655411870231699070}
-  - component: {fileID: 5301767409524913906}
+  - component: {fileID: 2659508317835370676}
   m_Layer: 0
-  m_Name: "\u0421TF_Missile_Blue"
+  m_Name: DammageBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,7 +159,7 @@ MonoBehaviour:
   impactSound: {fileID: 8300000, guid: 5ff823f546b52574a931e1d9b44290a6, type: 3}
   volume: 0.1
   amount: 1
---- !u!114 &5301767409524913906
+--- !u!114 &2659508317835370676
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7090710131271465290}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9661d0f4592ea794687b78cb3f10a84a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4777eec46c655954aba9665a14752a22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 3

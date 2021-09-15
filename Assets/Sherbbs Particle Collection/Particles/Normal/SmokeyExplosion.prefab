@@ -9577,6 +9577,7 @@ GameObject:
   - component: {fileID: 8714244275622671901}
   - component: {fileID: 8714244275622671898}
   - component: {fileID: 8714244275622671899}
+  - component: {fileID: 8519713664659995182}
   m_Layer: 0
   m_Name: SmokeyExplosion
   m_TagString: Untagged
@@ -14384,6 +14385,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &8519713664659995182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8714244275622671896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7794c33cb087bc44947938f6f33fe47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8714244275726771928
 GameObject:
   m_ObjectHideFlags: 0
