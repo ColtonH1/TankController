@@ -10,6 +10,7 @@ public class EnemyInteract : Interactable
     CharacterCombat combat;
     [SerializeField] int amount;
 
+
     private void Start()
     {
         playerManager = PlayerManager.instance;
@@ -22,7 +23,8 @@ public class EnemyInteract : Interactable
         HealthBase targetStats = playerManager.player.GetComponent<HealthBase>();
         if (targetStats != null)
         {
-            combat.Attack(targetStats, amount);
+            combat.React(targetStats, amount);
+            //combat.Attack(targetStats, amount);
         }
 
     }

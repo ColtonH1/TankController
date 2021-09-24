@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class EnemyHealth : HealthBase
 {
@@ -11,6 +12,11 @@ public class EnemyHealth : HealthBase
         _enemy = GetComponent<Enemy>();
     }
 
+    public override void TakeDamage(int amount)
+    {
+        base.TakeDamage(amount);
+    }
+
     public override void Kill()
     {
         EnemyController enemyController = gameObject.GetComponentInChildren<EnemyController>();
@@ -19,6 +25,9 @@ public class EnemyHealth : HealthBase
         SkinnedMeshRenderer skinnedMeshRenderer = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
         if (skinnedMeshRenderer != null)
             skinnedMeshRenderer.enabled = false;
+        Canvas canvas = gameObject.GetComponentInChildren<Canvas>();
+        if (canvas != null)
+            canvas.enabled = false;
         base.Kill();
     }
 }

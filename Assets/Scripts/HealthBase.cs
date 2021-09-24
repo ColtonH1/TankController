@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class HealthBase : MonoBehaviour, IDamageable
 {
+    public event Action<int> characterMaxHealth;
+    public event Action<int> characterCurrentHealth;
+
     [Header("Health Base")]
     [SerializeField] public int _maxHealth = 3;
     [SerializeField] public int _currentHealth;
@@ -12,13 +16,12 @@ public class HealthBase : MonoBehaviour, IDamageable
     [SerializeField] ParticleSystem _impactParticles;
     [SerializeField] AudioClip _impactSound;
 
+    public HealthBar healthBar;
+
     private void Start()
-    { 
-        _currentHealth = _maxHealth;
-    }
-    private void Update()
     {
-        //isInvuln = Invincibility.isActive;
+        _currentHealth = _maxHealth;
+        characterMaxHealth?.Invoke(_maxHealth);
     }
 
     public void IncreaseHealth(int amount)
@@ -27,14 +30,14 @@ public class HealthBase : MonoBehaviour, IDamageable
         Debug.Log(gameObject.name + "'s health: " + _currentHealth);
     }
 
-    public void TakeDamage(int amount)
+    public virtual void TakeDamage(int amount)
     {
         _currentHealth -= amount;
+        characterCurrentHealth?.Invoke(_currentHealth);
         Debug.Log(gameObject.name + "'s health: " + _currentHealth);
         if (_currentHealth <= 0)
         {
             _currentHealth = 0;
-            //ImpactFeedback();
             Kill();
         }
     }
