@@ -1,7 +1,11 @@
-﻿using UnityEngine;
+﻿/*
+ * This script destorys the game object after five seconds 
+ */
+
+using UnityEngine;
 using System.Collections;
 
-public class csDestroyEffect : MonoBehaviour 
+public class DestroyEffect : MonoBehaviour 
 {
 
 	void Update ()

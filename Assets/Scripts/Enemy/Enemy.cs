@@ -1,5 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/*
+ * This script determines the initial enemy which only hurt the enemy when ran into
+ * At the moment, this script is no relevant to the game
+ * This script could still be used for object that might the enemy i.e. road spikes
+ */
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]

@@ -1,5 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/*
+ * This script is the base for how bullets work
+ * On a collision, the bullet will find the IDamagable script attached to the object is hit and determine that object as what was attacked
+ * Impact() will be called for the bullet scripts to determine how to deal with the collided object
+ */
 using UnityEngine;
 
 public abstract class BulletBase : MonoBehaviour

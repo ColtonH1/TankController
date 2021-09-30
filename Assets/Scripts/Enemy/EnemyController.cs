@@ -1,39 +1,48 @@
-﻿using System.Collections;
+﻿/*
+ * This script controls the enemy movement
+ * This script controls when enemy lunges at player
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
     public float lookRadius = 10f;
 
-    Transform target;
-    NavMeshAgent agent;
-    CharacterCombat combat;
-    EnemyShoot enemyShoot;
+    Transform target; //player
+    NavMeshAgent agent; //enemy movement agent
+    EnemyShoot enemyShoot; //script for shooting from the enemy
 
-    public float speed;
-    private float waitTime;
-    public float waitThisLong;
-    public float startWaitTime;
+    public float speed; //how fast the enemy moves
+    private float waitTime; //how long to wait in between patrols
+    public float waitTimeForChargeAttack; //how long to wait until charge attack after warning appears
+    public float waitThisLong; //how long to wait to reinitialize the contraints
+    public float startWaitTime; //the start wait time to wait in between patrols
 
-    public Transform moveSpot;
-    public float minX, minZ, maxX, maxZ;
+    public Transform moveSpot; //where to patrol to next
+    public float minX, minZ, maxX, maxZ; //where the patrol spot will pop up next
 
-    [SerializeField] int jumpHeight;
-    private bool isGrounded;
-    private Rigidbody rb;
-    public float distToGround = 1f;
+    [SerializeField] int jumpHeight; //how high to jump...if jumping works
+    private bool isGrounded; //checks if enemy is jumping or not
+    private Rigidbody rb; //enemy's rigidbody
+    public float distToGround = 1f; //maxium distance to not be considered jumping
+    public Image exclamationMark1;
+    public Image exclamationMark2;
 
 
     private void Start()
     {
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
-        combat = GetComponent<CharacterCombat>();
         enemyShoot = GetComponent<EnemyShoot>();
         moveSpot.position = new Vector3(Random.Range(minX, maxX), 0, Random.Range(minZ, maxZ));
         rb = GetComponent<Rigidbody>();
+        exclamationMark1.enabled = false;
+        exclamationMark2.enabled = false;
     }
 
     private void Update()
@@ -43,8 +52,7 @@ public class EnemyController : MonoBehaviour
         
         if (isGrounded && (random == 1))
         {
-            JumpAttacking();
-            Debug.Log(random);
+            StartCoroutine(ChargePlayer(waitTimeForChargeAttack));
         }
         else
             Move();
@@ -75,17 +83,13 @@ public class EnemyController : MonoBehaviour
     {
         agent.SetDestination(target.position);
 
-        //if (distance <= agent.stoppingDistance)
-        //{
-            PlayerHealth targetStats = target.GetComponent<PlayerHealth>();
-            if (targetStats != null)
-            {
-                enemyShoot.Shoot();
-                //combat.Attack(targetStats);
-            }
+        PlayerHealth targetStats = target.GetComponent<PlayerHealth>();
+        if (targetStats != null)
+        {
+            enemyShoot.Shoot();
+        }
 
-            FaceTarget(target);
-        //}
+        FaceTarget(target);
     }
 
     private void Patrol()
@@ -134,17 +138,23 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void JumpAttacking()
+    IEnumerator ChargePlayer(float waitingTime)
     {
+        Debug.Log("Showing !!!");
+        exclamationMark1.enabled = true;
+        exclamationMark2.enabled = true;
+        yield return new WaitForSeconds(waitingTime);
         Vector3 distance = target.transform.position - transform.position;
-        Debug.Log(isGrounded);
         if (isGrounded)
         {
             rb.constraints = RigidbodyConstraints.None;
             FaceTarget(target.transform);
-            rb.AddForce(new Vector3(distance.x, jumpHeight, distance.z), ForceMode.Impulse);
+            rb.AddForce(new Vector3(distance.x, 0, distance.z), ForceMode.Impulse);
+            FaceTarget(target.transform);
             StartCoroutine(FreezeContraints(waitThisLong));
         }
+        exclamationMark1.enabled = false;
+        exclamationMark2.enabled = false;
     }
 
     IEnumerator FreezeContraints(float waitThisLong)

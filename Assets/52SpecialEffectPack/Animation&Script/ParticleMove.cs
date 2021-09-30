@@ -1,7 +1,11 @@
-﻿using UnityEngine;
+﻿/*
+ * This script determines how a particle system will move and what to do upon impact
+ */
+
+using UnityEngine;
 using System.Collections;
 
-public class csParticleMove : MonoBehaviour
+public class ParticleMove : MonoBehaviour
 {
     public float speed = 10f;
     GameObject player;

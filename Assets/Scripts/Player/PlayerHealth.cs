@@ -1,4 +1,12 @@
-﻿using System.Collections;
+﻿/*
+ * This is the player health script
+ * This script sets the camera to shake upon damage
+ * This script sets the vignette upon damage
+ * This script holds the invulnerability for the player
+ * This script resets the level when the player dies
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;

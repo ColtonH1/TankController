@@ -33,7 +33,6 @@ public class LockOntoCharacterBullet : BulletBase
 
     protected override void Impact(IDamageable damageable, CharacterCombat combat)
     {
-        Debug.Log("Has lock on bullet");
         combat.Attack(damageable, amount);
     }
 }

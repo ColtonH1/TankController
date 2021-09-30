@@ -1,9 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/*
+ * This script determines how the player shoots
+ * It gives the player multiple projectiles 
+ * Determines how to switch between projectiles (scroll wheel)
+ */
 using UnityEngine;
 using TMPro;
 
-public class PlayerShoot : ShootProjectiles
+public class PlayerShoot : ShootProjectilesBase
 {
     [Header("Player Shoot")]
     public GameObject projectile1; //primary projectile
@@ -38,7 +41,6 @@ public class PlayerShoot : ShootProjectiles
     {
         if (Input.GetAxisRaw("Mouse ScrollWheel") > 0)
         {
-            Debug.Log("mouse up");
             mouseScrollInt++;
             if (mouseScrollInt > 3)
             {
@@ -47,7 +49,6 @@ public class PlayerShoot : ShootProjectiles
         }
         else if (Input.GetAxisRaw("Mouse ScrollWheel") < 0)
         {
-            Debug.Log("mouse down");
             mouseScrollInt--;
             if (mouseScrollInt < 1)
             {
@@ -59,17 +60,14 @@ public class PlayerShoot : ShootProjectiles
         {
             case 1:
                 selectedProjectile = projectile1;
-                Debug.Log("Projectile " + selectedProjectile + " is active");
                 displaySelectedProjectile.text = ("You have \"damage\" projectile active. Scroll up or down to change");
                 break;
             case 2:
                 selectedProjectile = projectile2;
-                Debug.Log("Projectile " + selectedProjectile + " is active");
                 displaySelectedProjectile.text = ("You have \"explosive\" projectile active. Scroll up or down to change");
                 break;
             case 3:
                 selectedProjectile = projectile3;
-                Debug.Log("Projectile " + selectedProjectile + " is active");
                 displaySelectedProjectile.text = ("You have \"lock on\" projectile active. Scroll up or down to change");
                 break;
 

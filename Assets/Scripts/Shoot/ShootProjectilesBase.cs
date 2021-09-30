@@ -1,8 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/*
+ * This script is the base for shooting projectiles
+ * It determines the first projectile's impact result (particles and sound)
+ */
 using UnityEngine;
 
-public class ShootProjectiles : MonoBehaviour
+public class ShootProjectilesBase : MonoBehaviour
 {
     [Header("Shoot Projectiles")]
 

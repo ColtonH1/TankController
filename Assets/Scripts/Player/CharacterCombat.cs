@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿/*
+ * This script calls the take damage function in the character's health script using the IDamageable interface as the basis for which character got hurt
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -40,7 +44,6 @@ public class CharacterCombat : MonoBehaviour
     {
         if(attackCooldown <= 0f)
         {
-            Debug.Log(transform.name + " is attacking " + damageable.GetGameObject().name);
             damageable.TakeDamage(amount);
             attackCooldown = 3f / attackSpeed;
         }

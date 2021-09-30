@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿/*
+ * This script determines how the camera will shake when the character gets hit 
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

@@ -1,6 +1,10 @@
-﻿using UnityEngine;
+﻿/*
+ * This script is the base script for checking if one character is within range of an interactable object or other character
+ */
 
-public class Interactable : MonoBehaviour
+using UnityEngine;
+
+public class InteractableBase : MonoBehaviour
 {
     public float radius = 3f;
     Transform player;

@@ -1,8 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/*
+ * This script determines how the enemy shoots
+ * Which projectile is being shot
+ * And the effect of the shot (particle system and sound of the secondary weapon)
+ */
+
 using UnityEngine;
 
-public class EnemyShoot : ShootProjectiles
+public class EnemyShoot : ShootProjectilesBase
 {
     [Header("Enemy Shoot")]
 
@@ -39,6 +43,7 @@ public class EnemyShoot : ShootProjectiles
         waitTime = 0;
     }
 
+    //determines which projectile will be shot
     public void Shoot()
     {
         int i = Random.Range(1, 3); 
@@ -57,18 +62,20 @@ public class EnemyShoot : ShootProjectiles
         }
     }
 
+    //fires the enemy's primary weapon
     public override void FireObject(GameObject projectile, GameObject launchOrigin)
     {
-        base.FireObject(projectile1, launchOrigin); //will fire particle rpresenting the projectile
+        base.FireObject(projectile1, launchOrigin); //will fire particle representing the projectile
 
         //fire real projectile while hiding it
         ammo = Instantiate(hardBodyAmmo, launchOrigin.transform.position, transform.rotation);
         ammo.transform.LookAt(player.transform);
 
         ammo.GetComponent<MeshRenderer>().enabled = false;
-        ammo.AddComponent<csParticleMove>();
+        ammo.AddComponent<ParticleMove>();
     }
 
+    //fires the enemy's secondary weapon
     private void FireSecondaryWeapon()
     {
         ball = Instantiate(projectile2, launchOrigin2.transform.position, transform.rotation);
@@ -77,7 +84,7 @@ public class EnemyShoot : ShootProjectiles
         ammo2.transform.LookAt(player.transform);
 
         ammo2.GetComponent<MeshRenderer>().enabled = false;
-        ammo2.AddComponent<csParticleMove>();
+        ammo2.AddComponent<ParticleMove>();
 
         if (shootParticles2 != null)
         {

@@ -14272,11 +14272,10 @@ GameObject:
   m_Component:
   - component: {fileID: 400006}
   - component: {fileID: 114000013888159424}
-  - component: {fileID: 114000012464131144}
-  - component: {fileID: 3821074861167565964}
   - component: {fileID: 5465109610678757427}
   - component: {fileID: -8409865533688745539}
   - component: {fileID: 1475540546119216256}
+  - component: {fileID: 4140481595129143328}
   m_Layer: 0
   m_Name: SwampBall
   m_TagString: Untagged
@@ -14313,36 +14312,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7794c33cb087bc44947938f6f33fe47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114000012464131144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69e3c62c4a36a60499b012483f817559, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
---- !u!114 &3821074861167565964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fded0706d1f93474384b033d0cd74ee8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHealth: 3
-  _currentHealth: 0
-  isInvuln: 0
-  _impactParticles: {fileID: 0}
-  _impactSound: {fileID: 0}
 --- !u!114 &5465109610678757427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14357,6 +14326,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackSpeed: 1
   attackDelay: 0.6
+  hitParticles: {fileID: 0}
+  hitSound: {fileID: 0}
+  volume: 1
 --- !u!54 &-8409865533688745539
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14389,3 +14361,17 @@ MonoBehaviour:
   impactSound: {fileID: 0}
   volume: 1
   knockbackStrength: 10
+  cameraShake: {fileID: 0}
+--- !u!114 &4140481595129143328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a906658885af0354a9dccee9387a8d20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10

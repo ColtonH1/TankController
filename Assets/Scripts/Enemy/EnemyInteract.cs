@@ -1,9 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/*
+ * This script decides if the enemy is close enough to the player to intereact with
+ */
 using UnityEngine;
 
 [RequireComponent(typeof(HealthBase))]
-public class EnemyInteract : Interactable
+public class EnemyInteract : InteractableBase
 {
     PlayerManager playerManager;
     HealthBase myStats;

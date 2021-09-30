@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿/*
+ * This script defines the bullet that can knock back a character
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

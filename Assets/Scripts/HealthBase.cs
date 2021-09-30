@@ -1,12 +1,20 @@
-﻿using System.Collections;
+﻿/*
+ * This script is the base for the health scripts. It uses the IDamageable interface
+ * This script can increase and decrease health
+ * This script can kill the character 
+ * This script determines the impact result
+ * This script returns the gameobject the health script is attached to 
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 
 public class HealthBase : MonoBehaviour, IDamageable
 {
-    public event Action<int> characterMaxHealth;
-    public event Action<int> characterCurrentHealth;
+    public event Action<int> CharacterMaxHealth;
+    public event Action<int> CharacterCurrentHealth;
 
     [Header("Health Base")]
     [SerializeField] public int _maxHealth = 3;
@@ -21,7 +29,7 @@ public class HealthBase : MonoBehaviour, IDamageable
     private void Start()
     {
         _currentHealth = _maxHealth;
-        characterMaxHealth?.Invoke(_maxHealth);
+        CharacterMaxHealth?.Invoke(_maxHealth);
     }
 
     public void IncreaseHealth(int amount)
@@ -33,7 +41,7 @@ public class HealthBase : MonoBehaviour, IDamageable
     public virtual void TakeDamage(int amount)
     {
         _currentHealth -= amount;
-        characterCurrentHealth?.Invoke(_currentHealth);
+        CharacterCurrentHealth?.Invoke(_currentHealth);
         Debug.Log(gameObject.name + "'s health: " + _currentHealth);
         if (_currentHealth <= 0)
         {
@@ -70,10 +78,10 @@ public class HealthBase : MonoBehaviour, IDamageable
         Collider collider = gameObject.GetComponent<Collider>();
         if (collider != null)
             collider.enabled = false;
-        ShootProjectiles shootProjectiles = gameObject.GetComponent<ShootProjectiles>();
+        ShootProjectilesBase shootProjectiles = gameObject.GetComponent<ShootProjectilesBase>();
         if (shootProjectiles != null)
             shootProjectiles.enabled = false;
-        Interactable interactable = gameObject.GetComponent<Interactable>();
+        InteractableBase interactable = gameObject.GetComponent<InteractableBase>();
         if (interactable != null)
             interactable.enabled = false;
         StartCoroutine(KillObject());
